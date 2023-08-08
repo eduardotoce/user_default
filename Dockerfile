@@ -1,9 +1,9 @@
-FROM python: 3.10.12
-COPY conda/create_env.sh create_env.sh
-COPY ./* ./src/
-WORKDIR /src/
-COPY requirements.txt  .ç
-RUN pip install --upgrade pip
+FROM python:3.11
+WORKDIR /usr/src/app
+COPY ./* /usr/src/app
+COPY src /usr/src/app
+COPY data /usr/src/app
+COPY models /usr/src/app
 RUN pip install -r requirements.txt
-EXPOSE 80
-CMD ["python", "main_app.py"]
+ENV PYTHONPATH=/usr/src/app
+CMD ["python", "main.py"]

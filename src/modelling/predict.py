@@ -3,7 +3,7 @@ import pickle
 
 import pandas as pd
 
-from src.config.config import DATA_DIRECTORY, MODELS_DIRECTORY, MODEL_FEATURES
+from src.project_constants.config import DATA_DIRECTORY, MODELS_DIRECTORY, MODEL_FEATURES
 
 df = pd.read_csv(pathlib.Path.joinpath(DATA_DIRECTORY, 'dataset.csv'), index_col=0)
 

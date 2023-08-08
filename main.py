@@ -4,8 +4,8 @@ import pickle
 import pandas as pd
 from flask import Flask, request
 
-from src.config.config import DATA_DIRECTORY, MODELS_DIRECTORY, MODEL_FEATURES
-from src.modelling.train import create_estimator
+from project_constants.config import DATA_DIRECTORY, MODELS_DIRECTORY, MODEL_FEATURES
+from modelling.train import create_estimator
 
 app = Flask(__name__)
 
@@ -13,7 +13,7 @@ app = Flask(__name__)
 # Define a route for the root path of the API
 @app.route('/')
 def home():
-    return ''
+    return 'hello from here'
 
 
 @app.route('/post/new_users/predictions', methods=['POST'])
@@ -97,15 +97,17 @@ def create_user_response(response):
 
 if __name__ == '__main__':
     try:
-        with open(pathlib.Path.joinpath(MODELS_DIRECTORY, 'model.pkl'), 'rb') as f:
+        with open('./model.pkl', 'rb') as f:
             model = pickle.load(f)
         f.close()
         print('Model loaded')
     except FileNotFoundError:
         model = create_estimator()
-    df = pd.read_csv(pathlib.Path.joinpath(DATA_DIRECTORY, 'dataset.csv'), sep=';', index_col='uuid')
+    df = pd.read_csv('./dataset.csv', sep=';', index_col='uuid')
     print('data loaded')
     numerical_features_model = MODEL_FEATURES
+    print('0.0.0.0')
+    print('not exposed')
 
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
 

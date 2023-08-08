@@ -9,7 +9,7 @@ from sklearn.metrics import confusion_matrix, f1_score, make_scorer
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 
-from src.config.config import DATA_DIRECTORY, MODELS_DIRECTORY, MODEL_FEATURES
+from project_constants.config import DATA_DIRECTORY, MODELS_DIRECTORY, MODEL_FEATURES
 
 
 def create_estimator():
